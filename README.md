@@ -23,11 +23,11 @@ a modal crossword system for building and solving grid based word puzzles.
 
 ## inspiration
 
-todo
+playing crosswords and wordgames
 
 ---
 
-## research
+## r&d
 
 ### creation
 
@@ -58,7 +58,9 @@ todo
 
 ### builder focus to start
 
-- [ ] get grid working with customizeable width/heights
-- [ ] let h+w be customizeable via ui numbers and/or presets
+- [x] get grid working with customizeable width/heights
+- [x] let h+w be customizeable via ui numbers and/or presets
+- [ ] create movement with around the grid with `hjkl`
+- [ ] create modes for inserting vs. moving
 
 

@@ -1,8 +1,9 @@
 <script>
+	import Grid from "./lib/Grid.svelte";
 </script>
 
 <main>
-	<div>Sample Text</div>
+	<Grid />
 </main>
 
 <style>
