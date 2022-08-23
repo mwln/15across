@@ -16,7 +16,7 @@ a modal system for building and solving grid based word puzzles.
 * modal solving for editing, navigating, and checking the grid
 * advanced leaderboard tracking
 * track puzzles solved
-* stats and analytics after solving
+* stats and analytics
 * quick dictionary for viewing definitions of words
 
 ---
