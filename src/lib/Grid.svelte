@@ -1,34 +1,26 @@
 <script>
 	import Cell from "./Cell.svelte";
-	import { watch } from "./store";
+	import { keylog, grid, movement, highlighter } from "./store";
 
-	let MAX_SIZE = 25;
-	let MIN_SIZE = 5;
-
-	let cols = 15;
-	$: size = cols ** 2;
-
-	function add() {
-		cols < MAX_SIZE ? (cols += 1) : cols;
-	}
-	function reset() {
-		cols = 15;
-	}
-	function reduce() {
-		cols > MIN_SIZE ? (cols -= 1) : cols;
+	let incr = 1;
+	function handleKeydown(event) {
+		keylog.log(event);
+		highlighter.move($grid, $movement);
 	}
 </script>
 
-<svelte:window on:keydown={watch.handleKeydown} />
+<svelte:window on:keydown={handleKeydown} />
 <div class="grid-config">
-	<button on:click={add}> add cells </button>
-	<button on:click={reset}> reset cells </button>
-	<button on:click={reduce}> reduce cells </button>
-	<div>total cells: {size} width: {cols}</div>
+	<button on:click={() => grid.add(incr)}> add cells </button>
+	<button on:click={grid.reset}> reset cells </button>
+	<button on:click={() => grid.reduce(incr)}> reduce cells </button>
+	<div>total cells: {$grid ** 2} width: {$grid}</div>
 </div>
-<div class="cell-container" style="--cols:{cols}">
-	{#each { length: size } as _, i}
-		<Cell id={i} />
+<div class="cell-container" style="--cols:{$grid}">
+	{#each { length: $grid } as _, i}
+		{#each { length: $grid } as _, j}
+			<Cell idx={j} idy={i} />
+		{/each}
 	{/each}
 </div>
 

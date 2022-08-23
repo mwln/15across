@@ -1,10 +1,11 @@
 <script>
-	import { watch } from "./store";
-	export let id;
+	import { highlighter } from "./store";
+	export let idx;
+	export let idy;
 </script>
 
-<div class:selected={id === $watch.x + $watch.y}>
-	{id}
+<div class:selected={idx === $highlighter.x && idy === $highlighter.y}>
+	{idx},{idy}
 </div>
 
 <style>

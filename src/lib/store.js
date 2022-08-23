@@ -1,35 +1,70 @@
-import { writable } from "svelte/store";
+import { writable, derived } from "svelte/store";
 
-let key;
-let code;
-let x = 0
-let y = 0;
-
+const KEYLOG = {
+	key: null, 
+	code: null,
+}
+const HIGHLIGHTER = {x: 0, y: 0}
+const GRID_INFO = {
+	minSize: 5,
+	maxSize: 25,
+	initSize: 8,
+}
 const MAPPINGS = {
 	h: {x: -1, y: 0},
-	j: {x: 0, y: -1},
-	k: {x: 0, y: 1},
+	j: {x: 0, y: 1},
+	k: {x: 0, y: -1},
 	l: {x: 1, y: 0}
 }
 
-function movement(event, keylog) {
-	if (MAPPINGS[event.key]) {
-		keylog.x += MAPPINGS[event.key].x
-		keylog.y += MAPPINGS[event.key].y
-		keylog.key = event.key
-		keylog.code = event.code
-		return keylog
-	}
-	return keylog
+function highlight(width, movement, now) {
+	console.log(width)
+	console.log(movement)
+	console.log(now)
+	let cap = width-1
+	let nx = movement.x + now.x
+	let ny = movement.y + now.y	
+
+	// boundary handling
+	if (nx > cap && ny == cap) 	{ nx = 0; 	ny = 0 }
+	if (nx > cap && ny < cap)	{ nx = 0; 	ny += 1}
+	if (nx < 0 && ny > 0)		{ nx = cap; 	ny -= 1}
+	if (nx < 0 && ny == 0) 		{ nx = cap;}	
+	
+	if (ny < 0)			{ ny = cap}
+	if (ny > cap)			{ ny = 0 }
+
+	return { x: nx, y: ny }
 }
 
-function keylog() {
-    const { subscribe, set, update } = writable({key, code, x, y});
+function openKeylog() {
+    const { subscribe, set } = writable(KEYLOG);
     
     return {
 		subscribe,
-		handleKeydown: (e) => update(n => movement(e, n))
+		log: (e) => set({key: e.key, code: e.keyCode})
 		}
-	};
+};
 
-export const watch = keylog();
+function openGrid() {
+    const { subscribe, set, update } = writable(GRID_INFO.initSize);
+    return {
+	    subscribe,
+	    add: (size) => update(n => n+size > GRID_INFO.maxSize ? n : n+size),
+	    reduce: (size) => update(n => n-size < GRID_INFO.minSize ? n : n-size),
+	    reset: () => set(GRID_INFO.initSize)
+    }
+}    
+
+function openHighlighter() {
+	const { subscribe, set, update } = writable(HIGHLIGHTER)
+	return {
+		subscribe,
+		move: (width, movement) => update(n => highlight(width, movement, n)),
+	}
+}
+
+export const keylog = openKeylog();
+export const grid = openGrid();
+export const highlighter = openHighlighter();
+export const movement = derived(keylog, $keylog => MAPPINGS[ $keylog.key ], {x:0, y:0});
