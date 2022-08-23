@@ -19,7 +19,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm ci
-          npm run build
+          npm run build --base=/15across/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
