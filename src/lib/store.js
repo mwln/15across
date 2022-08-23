@@ -10,11 +10,11 @@ const GRID_INFO = {
 	maxSize: 25,
 	initSize: 8,
 }
-const MAPPINGS = {
-	h: {x: -1, y: 0},
-	j: {x: 0, y: 1},
-	k: {x: 0, y: -1},
-	l: {x: 1, y: 0}
+export const MAPPINGS = {
+	h: {x: -1, y: 0, desc: "LEFT"},
+	j: {x: 0, y: 1, desc: "DOWN"},
+	k: {x: 0, y: -1, desc: "UP"},
+	l: {x: 1, y: 0, desc: "RIGHT"}
 }
 
 function highlight(width, movement, now) {
