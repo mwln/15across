@@ -64,6 +64,6 @@ playing crosswords and wordgames
 - [x] develop intuitive movement using grid sizing
 - [x] get `hjkl` working properly for grid movement
 - [ ] reset highlighter on grid changes
-- [ ] create modes interface
+- [ ] create modes interface (color change)
 
 
