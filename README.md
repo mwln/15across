@@ -1,6 +1,6 @@
 # 15across
 
-a modal crossword system for building and solving grid based word puzzles.
+a modal system for building and solving grid based word puzzles.
 
 ## features
 
@@ -16,7 +16,7 @@ a modal crossword system for building and solving grid based word puzzles.
 * modal solving for editing, navigating, and checking the grid
 * advanced leaderboard tracking
 * track puzzles solved
-* stats and analytics after solving
+* stats and analytics
 * quick dictionary for viewing definitions of words
 
 ---
@@ -63,6 +63,7 @@ playing crosswords and wordgames
 - [x] create smart highlighting based on cell id
 - [x] develop intuitive movement using grid sizing
 - [x] get `hjkl` working properly for grid movement
-- [ ] create modes interface
+- [ ] reset highlighter on grid changes
+- [ ] create modes interface (color change)
 
 
