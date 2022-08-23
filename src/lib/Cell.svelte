@@ -1,13 +1,14 @@
 <script>
+	import { watch } from "./store";
 	export let id;
 </script>
 
-<div class="cell">
+<div class:selected={id === $watch.x + $watch.y}>
 	{id}
 </div>
 
 <style>
-	.cell {
+	div {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -15,6 +16,9 @@
 		width: 50px;
 		height: 50px;
 		margin: 2px;
-		background-color: lightgrey;
+		background-color: blue;
+	}
+	.selected {
+		background-color: lightgreen;
 	}
 </style>

@@ -60,7 +60,9 @@ playing crosswords and wordgames
 
 - [x] get grid working with customizeable width/heights
 - [x] let h+w be customizeable via ui numbers and/or presets
-- [ ] create movement with around the grid with `hjkl`
-- [ ] create modes for inserting vs. moving
+- [x] create smart highlighting based on cell id
+- [ ] develop intuitive movement using grid sizing
+- [ ] get `hjkl` working properly for grid movement
+- [ ] create modes interface
 
 

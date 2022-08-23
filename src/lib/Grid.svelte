@@ -1,5 +1,6 @@
 <script>
 	import Cell from "./Cell.svelte";
+	import { watch } from "./store";
 
 	let MAX_SIZE = 25;
 	let MIN_SIZE = 5;
@@ -18,6 +19,7 @@
 	}
 </script>
 
+<svelte:window on:keydown={watch.handleKeydown} />
 <div class="grid-config">
 	<button on:click={add}> add cells </button>
 	<button on:click={reset}> reset cells </button>
@@ -26,7 +28,7 @@
 </div>
 <div class="cell-container" style="--cols:{cols}">
 	{#each { length: size } as _, i}
-		<Cell id={i + 1} />
+		<Cell id={i} />
 	{/each}
 </div>
 
